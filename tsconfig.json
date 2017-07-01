@@ -8,6 +8,7 @@
     },
     "files": [
         "./src/runner.ts",
+        "./src/level/physics.ts",
         "./src/level/level.ts",
         "./src/level/player.ts",
         "./src/level/stage.ts",

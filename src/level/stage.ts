@@ -9,6 +9,6 @@ class Stage {
     }
 
     isSolid(pt : Point) {
-        return pt.y > 150;
+        return pt.x < 100 ? pt.y > 132 : pt.y > 100;
     }
 }
