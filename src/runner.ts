@@ -1,8 +1,10 @@
 abstract class Runner {
-    public drawables: PIXI.Container;
+    public drawables : PIXI.Container;
+    private master : Master;
 
-    constructor() {
+    constructor(master : Master) {
         this.drawables = new PIXI.Container();
+        this.master = master;
     }
     
     respond(controls : Controls) {;}
