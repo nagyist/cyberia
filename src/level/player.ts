@@ -24,7 +24,7 @@ class Player implements LevelObject {
 
     respond(controls : Controls) {
         const speedBoost = this.speedTimer < 100 ? 2 :
-                           this.speedTimer < 300 ? 3 : 4;
+                           this.speedTimer < 300 ? 2.5 : 3;
         if (controls.Left)
             this.physics.xvel = -speedBoost;
         else if (controls.Right)
