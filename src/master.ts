@@ -18,7 +18,7 @@ class Master {
         this.runners = [];
         this.controls = new KeyboardControls();
 
-        this.addRunner(new Test(this));
+        this.addRunner(new Level(this));
     }
 
     update() {
@@ -125,25 +125,21 @@ class KeyboardControls implements Controls {
     }
 };
 
-class Test extends Runner {
-    private test_sprite : PIXI.Sprite;
-    constructor(master) {
-        super(master);
-        this.test_sprite = PIXI.Sprite.fromImage('images/test.gif');
-
-        this.test_sprite.anchor.set(0.5);
-        this.test_sprite.x = 200;
-        this.test_sprite.y = 150;
-
-        this.drawables.addChild(this.test_sprite);
+class Point {
+    x : number = 0
+    y : number = 0
+    constructor(x? : number, y? : number) {
+        if (x)
+            this.x = x;
+        if (y)
+            this.y = y;
     }
-    respond(controls) {
-        if (controls.Left)
-            this.test_sprite.x--;
-        if (controls.Right)
-            this.test_sprite.x++;
+    round() {
+        return new Point(
+            this.x >> 0,
+            this.y >> 0
+        )
     }
-    update() { ; }
 }
 
 const master = new Master();

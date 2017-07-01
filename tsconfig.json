@@ -8,6 +8,9 @@
     },
     "files": [
         "./src/runner.ts",
+        "./src/level/level.ts",
+        "./src/level/player.ts",
+        "./src/level/stage.ts",
         "./src/master.ts",
         "./lib/typings/pixi.js.d.ts"
     ]
