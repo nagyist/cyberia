@@ -5,6 +5,7 @@
         "outFile": "./build/out.js"
     },
     "files": [
+        "./src/runner.ts",
         "./src/master.ts",
         "./lib/typings/pixi.js.d.ts"
     ]
