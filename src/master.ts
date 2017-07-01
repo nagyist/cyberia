@@ -18,6 +18,7 @@ class Master {
         this.runners = [];
         this.controls = new KeyboardControls();
 
+        // For debug purposes only
         this.addRunner(new Level(this));
     }
 
@@ -142,5 +143,11 @@ class Point {
     }
 }
 
-const master = new Master();
-master.update();
+function loadResources() {
+    PIXI.loader
+        .add('player', 'images/player.gif')
+        .load(function() {master = new Master(); master.update()})
+}
+
+let master;
+loadResources();

@@ -1,6 +1,6 @@
 interface Stage {
     constructor()
-    isSolid(pt : Point)
+    isSolid(pt : Point) : boolean
 }
 
 class Stage {
