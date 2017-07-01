@@ -1,3 +1,8 @@
+/* Level is a Runner that represents a level in-game.
+ * The level is responsible for all coordination of objects within the level.
+ * No LevelObject should exist outside of the Level.
+ * */
+
 class Level extends Runner {
     private objects : LevelObject[] = []
     private stage : Stage = new Stage()

@@ -1,3 +1,9 @@
+/* Class Player is a LevelObject that additionally implements the method 
+ * respond() in order to respond to player input. 
+ * 
+ * Eventually some of this will need to be separated out into a "standard
+ * LevelObject"
+ * */
 class Player implements LevelObject {
     active = true
     point : Point = new Point(200, 0);
@@ -24,7 +30,7 @@ class Player implements LevelObject {
 
     respond(controls : Controls) {
         const speedBoost = this.speedTimer < 100 ? 2 :
-                           this.speedTimer < 300 ? 2.5 : 3;
+                           this.speedTimer < 300 ? 3 : 4;
         if (controls.Left)
             this.physics.xvel = -speedBoost;
         else if (controls.Right)

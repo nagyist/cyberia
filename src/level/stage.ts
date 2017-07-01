@@ -1,3 +1,4 @@
+/* Stage is a placeholder */
 interface Stage {
     constructor()
     isSolid(pt : Point) : boolean

@@ -1,15 +1,28 @@
+/* Master interface
+ * All classes that implement "Runner" must have a reference to a class that
+ * implements "Master". This allows themselves to add or remove their own reference
+ * from their parent as is necessary.
+ * */
+
 interface Master {
     addRunner(runner : Runner) : void
     removeRunner(runner : Runner) : void
 }
 
-class Master {
+/* LocalMaster is the parent of everything.
+ * A single local master is created at the time the game loads,
+ * which in turn sets the whole game in motion.
+ * 
+ * Any runner that holds LocalMaster as its parent is a runner that is
+ * currently displayed on screen.
+ * */
+class LocalMaster implements Master {
     private gamescreen: PIXI.Application;
     private runners: Runner[];
     private controls: Controls;
 
     constructor() {
-        this.gamescreen = new PIXI.Application(400, 300, {
+        this.gamescreen = new PIXI.Application(400, 225, {
             "backgroundColor": 0x444444,
             "resolution": 1,
         });
@@ -44,6 +57,12 @@ class Master {
     }
 }
 
+/* A standardized control interface.
+ *
+ * The "release" function is called to make sure that certain buttons do not
+ * remain constantly pressed, whether they do in "reality" or not.
+ * */
+
 interface Controls {
     Up: boolean,
     Down: boolean,
@@ -55,6 +74,11 @@ interface Controls {
 
     release() : void
 }
+
+/* An implementation of the control interface.
+ *
+ * Derived from Space Ava (and thus Aspect Star W, eventually)
+ * */
 
 class KeyboardControls implements Controls {
     Up = false
@@ -126,6 +150,12 @@ class KeyboardControls implements Controls {
     }
 };
 
+/* A Point is a standard 2d vector. The point should be immutable, buttons
+ * there is no enforcement.
+ * 
+ * Method round() returns a new point whose children are integers. 
+ * */
+
 class Point {
     x : number = 0
     y : number = 0
@@ -146,8 +176,8 @@ class Point {
 function loadResources() {
     PIXI.loader
         .add('player', 'images/player.gif')
-        .load(function() {master = new Master(); master.update()})
+        .load(function() {master = new LocalMaster(); master.update()})
 }
 
-let master;
+let master : LocalMaster;
 loadResources();

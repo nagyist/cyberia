@@ -9,9 +9,11 @@ mkdir build/images
 echo "Running tsc"
 tsc
 
+echo "Compiling images"
+python3 process.py
+
 echo "Moving other files"
 cp html/* build
 cp -r lib/*.js build/lib
-cp images/* build/images
 
 echo "Complete"
