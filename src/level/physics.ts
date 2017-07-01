@@ -1,10 +1,13 @@
 class Physics {
     private static g : number = 0.5
 
+    public xvel : number = 0
+    public yvel : number = 0
+    public ground : boolean = false
+
     constructor(public stage : Stage,
-                public xvel : number, 
-                public yvel : number,
-                public weight: number) {;}
+                private weight: number,
+                private maxyvel : number) {;}
 
     public step(point : Point) : Point {
         let newx = point.x + this.xvel;
@@ -24,9 +27,12 @@ class Physics {
         }
 
         this.yvel = this.yvel + this.weight * Physics.g;
+        if (this.yvel > this.maxyvel)
+            this.yvel = this.maxyvel;
         let newy = point.y + this.yvel;
+        this.ground = false;
         if (this.yvel !== 0) {
-            if (this.stage.isSolid(new Point(newx, newy))) {
+            if (this.stage.isSolid(new Point(point.x, newy))) {
                 let newyvel = this.yvel;
                 do {
                     if (Math.abs(newyvel) > 0.1) {
@@ -35,8 +41,9 @@ class Physics {
                     } else {
                         newy = point.y;
                     }
-                } while (this.stage.isSolid(new Point(newx, newy)))
+                } while (this.stage.isSolid(new Point(point.x, newy)))
                 this.yvel = 0;
+                this.ground = true;
             }
         }
 

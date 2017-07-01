@@ -13,7 +13,7 @@ class Player implements LevelObject {
         this.sprite.y = 0;
 
         this.point = new Point(200, 0);
-        this.physics = new Physics(stage, 0, 0, 1);
+        this.physics = new Physics(stage, 1, 7);
     }
 
     respond(controls : Controls) {
@@ -24,8 +24,8 @@ class Player implements LevelObject {
         else
             this.physics.xvel = 0;
         
-        if (controls.ButtonA && this.physics.yvel == 0) {
-            this.physics.yvel = -5;
+        if (controls.ButtonA && this.physics.ground) {
+            this.physics.yvel = -7;
         }
     }
 

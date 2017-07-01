@@ -36,7 +36,7 @@ class Master {
     }
 
     removeRunner(runner : Runner) {
-        var index = this.runners.indexOf(runner);
+        const index = this.runners.indexOf(runner);
         if (index !== -1)
             this.runners.splice(index, 1);
         this.gamescreen.stage.removeChild(runner.drawables);
