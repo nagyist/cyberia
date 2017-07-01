@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "sourceMap": true,
+        "outFile": "./build/out.js"
+    },
+    "files": [
+        "./src/master.ts",
+        "./lib/typings/pixi.js.d.ts"
+    ]
+}
