@@ -1,8 +1,10 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "sourceMap": true,
-        "outFile": "./build/out.js"
+        "outFile": "./build/out.js",
+        "inlineSourceMap": true,
+        "pretty": true,
+        "alwaysStrict": true
     },
     "files": [
         "./src/runner.ts",

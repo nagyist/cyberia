@@ -138,10 +138,10 @@ class Test extends Runner {
         this.drawables.addChild(this.test_sprite);
     }
     respond(controls) {
-        if (controls.Up)
-            this.test_sprite.y--;
-        if (controls.Down)
-            this.test_sprite.y++;
+        if (controls.Left)
+            this.test_sprite.x--;
+        if (controls.Right)
+            this.test_sprite.x++;
     }
     update() { ; }
 }
