@@ -153,8 +153,7 @@ class KeyboardControls implements Controls {
     }
 };
 
-/* A Point is a standard 2d vector. The point should be immutable, buttons
- * there is no enforcement.
+/* A Point is a standard 2d vector. The point should be immutable.
  * 
  * Method round() returns a new point whose children are integers. 
  * */
@@ -162,12 +161,15 @@ class KeyboardControls implements Controls {
 class Point {
     x : number = 0
     y : number = 0
-    constructor(x? : number, y? : number) {
+    
+    constructor(x : number, y : number) {
         if (x)
             this.x = x;
         if (y)
             this.y = y;
+        Object.freeze(this);
     }
+
     round() {
         return new Point(
             this.x >> 0,
