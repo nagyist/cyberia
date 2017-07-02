@@ -79,7 +79,7 @@ class Player implements LevelObject {
         } else if (this.physics.xvel !== 0) {
             const frame = (this.timer < 10) ? 1 :
                           (this.timer < 20) ? 2 :
-                          (this.timer < 30) ? 3 : 4
+                          (this.timer < 30) ? 3 : 4;
             rect = new PIXI.Rectangle(16*frame, 0, 16, 32);
         } else {
             rect = new PIXI.Rectangle(16*0, 0, 16, 32);

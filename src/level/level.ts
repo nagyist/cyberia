@@ -2,7 +2,6 @@
  * The level is responsible for all coordination of objects within the level.
  * No LevelObject should exist outside of the Level.
  * */
-
 class Level extends Runner {
     private objects : LevelObject[] = []
     private stage : Stage = new Stage()
@@ -35,7 +34,7 @@ class Level extends Runner {
     }
 }
 
-// An object that lives in a level
+// An object that lives in a level must implement this interface
 interface LevelObject {
     active : boolean
     sprite : PIXI.Sprite
