@@ -30,9 +30,12 @@ class LocalMaster implements Master {
         document.getElementById("holderdiv").appendChild(this.gamescreen.view);
         this.runners = [];
         this.controls = new KeyboardControls();
+    }
 
-        // For debug purposes only
+    initialize() {
+        // Everything that needs to go after resources have loaded
         this.addRunner(new Level(this));
+        this.update();
     }
 
     update() {
@@ -176,8 +179,8 @@ class Point {
 function loadResources() {
     PIXI.loader
         .add('player', 'images/player.gif')
-        .load(function() {master = new LocalMaster(); master.update()})
+        .load(function() {master.initialize()})
 }
 
-let master : LocalMaster;
+const master = new LocalMaster();
 loadResources();
