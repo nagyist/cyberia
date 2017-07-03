@@ -4,12 +4,13 @@
  * */
 class Level extends Runner implements Master {
     private objects : LevelObject[] = []
-    private stage : Stage = new Stage()
+    private stage : Stage
     private player : Player
 
     constructor(master : Master) {
         super(master);
         this.addRunner(new Terrain(this, worldfile.levels[0]));
+        this.stage = new Stage(worldfile.levels[0]);
         this.player = new Player(this.stage);
         this.addObject(this.player);
     }
@@ -19,7 +20,7 @@ class Level extends Runner implements Master {
     }
 
     update() {
-        this.drawables.position = new PIXI.Point(200 - this.player.point.x, 0);
+        this.drawables.position = new PIXI.Point(200 - this.player.point.x, 160 - this.player.point.y);
         this.player.update();
     }
 

@@ -25,9 +25,10 @@ class LocalMaster implements Master {
     private controls: Controls;
 
     constructor() {
+        PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST
         this.gamescreen = new PIXI.Application(400, 225, {
             "backgroundColor": 0x444444,
-            "resolution": 1,
+            "resolution": 2,
         });
         this.gamescreen.view.id = "gamecanvas";
         document.getElementById("holderdiv").appendChild(this.gamescreen.view);
@@ -173,15 +174,44 @@ class Point {
         Object.freeze(this);
     }
 
-    round() {
+    round() : Point {
         return new Point(
             this.x >> 0,
             this.y >> 0
         )
     }
+
+    multiply(j : number) : Point {
+        return new Point(
+            this.x * j,
+            this.y * j
+        )
+    }
+
+    modulo(j : number) : Point {
+        return new Point(
+            this.x % j,
+            this.y % j
+        )
+    }
+
+    floor(j : number) : Point {
+        return new Point(
+            (this.x / j) >> 0,
+            (this.y / j) >> 0
+        )
+    }
+
+    subtract(p : Point) : Point {
+        return new Point(
+            this.x - p.x,
+            this.y - p.y
+        )
+    }
 }
 
 function loadResources() {
+    
     PIXI.loader
         .add('player', 'images/player.gif')
         .add('level1', 'images/level1.gif')

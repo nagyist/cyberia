@@ -21,7 +21,7 @@ class Player implements LevelObject {
         text.frame = rect;
         this.sprite = new PIXI.Sprite(text);
 
-        this.sprite.anchor.set(0.5);
+        this.sprite.anchor.set(0.5, 1);
         this.sprite.x = 200;
         this.sprite.y = 0;
 
@@ -63,7 +63,7 @@ class Player implements LevelObject {
             this.speedTimer = 0;
         const rnd = this.point.round();
         this.sprite.x = rnd.x;
-        this.sprite.y = rnd.y;
+        this.sprite.y = rnd.y+1;
         this.determineFrame();
     }
 

@@ -32,11 +32,12 @@ class Physics {
              * though...
              * */
             if (this.stage.isSolid(new Point(newx, point.y))) {
-                let newxvel = this.xvel;
+                let newxvel = Math.abs(this.xvel);
+                const signx = Math.sign(this.xvel);
                 do {
-                    if (Math.abs(newxvel) > 0.1) {
+                    if (newxvel > 0.1) {
                         newxvel -= 0.1;
-                        newx = point.x + newxvel;
+                        newx = point.x + signx*newxvel;
                     } else {
                         newx = point.x;
                         break;
@@ -53,11 +54,12 @@ class Physics {
         this.ground = false;
         if (this.yvel !== 0) {
             if (this.stage.isSolid(new Point(point.x, newy))) {
-                let newyvel = this.yvel;
+                let newyvel = Math.abs(this.yvel);
+                const signy = Math.sign(this.yvel);
                 do {
-                    if (Math.abs(newyvel) > 0.1) {
+                    if (newyvel > 0.1) {
                         newyvel -= 0.1;
-                        newy = point.y + this.yvel;
+                        newy = point.y + signy*this.yvel;
                     } else {
                         newy = point.y;
                         break;
