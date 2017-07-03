@@ -1,3 +1,6 @@
+declare var worldfile : any; // The worldfile is handled separately, but we
+                             // need to convince tsc it exists
+
 /* Master interface
  * All classes that implement "Runner" must have a reference to a class that
  * implements "Master". This allows themselves to add or remove their own reference
