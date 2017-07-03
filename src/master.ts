@@ -36,13 +36,13 @@ class LocalMaster implements Master {
         this.controls = new KeyboardControls();
     }
 
-    initialize() {
+    initialize() : void {
         // Everything that needs to go after resources have loaded
         this.addRunner(new Level(this));
         this.update();
     }
 
-    update() {
+    update() : void {
         setTimeout(() => {this.update()}, 1000/60);
         this.runners.forEach((e) => {
             e.respond(this.controls);
@@ -51,12 +51,12 @@ class LocalMaster implements Master {
         this.controls.release();
     }
 
-    addRunner(runner : Runner) {
+    addRunner(runner : Runner) : void {
         this.runners.push(runner);
         this.gamescreen.stage.addChild(runner.drawables);
     }
 
-    removeRunner(runner : Runner) {
+    removeRunner(runner : Runner) : void {
         const index = this.runners.indexOf(runner);
         if (index !== -1)
             this.runners.splice(index, 1);
@@ -101,13 +101,13 @@ class KeyboardControls implements Controls {
         window.addEventListener("keyup", (e) => this.keyUp(e), false);
     }
 
-    release() {
+    release() : void {
         this.ButtonA = false;
         this.ButtonB = false;
         this.Start = false;
     }
 
-    keyDown(event) {
+    keyDown(event) : void {
         if (event.keyCode == 32 || event.keyCode == 90) { // SPACE
             this.ButtonA = true;
         }
@@ -132,7 +132,7 @@ class KeyboardControls implements Controls {
         }
     }
 
-    keyUp(event : KeyboardEvent) {
+    keyUp(event : KeyboardEvent) : void {
         if (event.keyCode == 32 || event.keyCode == 90) { // SPACE
             this.ButtonA = false;
         }
@@ -210,8 +210,7 @@ class Point {
     }
 }
 
-function loadResources() {
-    
+function loadResources() : void {
     PIXI.loader
         .add('player', 'images/player.gif')
         .add('level1', 'images/level1.gif')

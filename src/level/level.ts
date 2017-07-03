@@ -15,32 +15,33 @@ class Level extends Runner implements Master {
         this.addObject(this.player);
     }
 
-    respond(controls : Controls) {
+    respond(controls : Controls) : void {
         this.player.respond(controls);
     }
 
-    update() {
+    update() : void {
         this.drawables.position = new PIXI.Point(200 - this.player.point.x, 160 - this.player.point.y);
         this.player.update();
     }
 
-    private addObject(obj : LevelObject) {
+    private addObject(obj : LevelObject) : void {
         this.objects.push(obj);
         this.drawables.addChild(obj.sprite);
     }
 
-    private removeObject(obj : LevelObject) {
+    private removeObject(obj : LevelObject) : void {
         const index = this.objects.indexOf(obj);
         if (index !== -1)
             this.objects.splice(index, 1);
         this.drawables.removeChild(obj.sprite);
     }
 
-    addRunner(runner : Runner) {
+    /* Implements Master interface */
+    addRunner(runner : Runner) : void {
         this.drawables.addChild(runner.drawables);
     }
 
-    removeRunner(runner : Runner) {
+    removeRunner(runner : Runner) : void {
         this.drawables.removeChild(runner.drawables);
     }
 }

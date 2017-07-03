@@ -12,7 +12,7 @@ class Stage {
         this.width = level.width;
     }
 
-    isSolid(pt : Point) {
+    isSolid(pt : Point) : boolean {
         const bigtilept = pt.floor(64);
         const bigtile = this.level[bigtilept.x+this.width*bigtilept.y];
         if (bigtile == 0)

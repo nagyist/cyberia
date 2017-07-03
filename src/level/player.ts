@@ -28,7 +28,7 @@ class Player implements LevelObject {
         this.physics = new Physics(stage, 1, 7);
     }
 
-    respond(controls : Controls) {
+    respond(controls : Controls) : void {
         const speedBoost = this.speedTimer < 100 ? 2 :
                            this.speedTimer < 300 ? 3 : 4;
         if (controls.Left)
@@ -52,7 +52,7 @@ class Player implements LevelObject {
         }
     }
 
-    update() {
+    update() : void {
         this.timer++;
         if (this.timer > 40)
             this.timer = 0;
@@ -67,7 +67,7 @@ class Player implements LevelObject {
         this.determineFrame();
     }
 
-    private determineFrame() {
+    private determineFrame() : void {
         //TODO: Do animations better than this
         const text = PIXI.loader.resources['player'].texture;
         let rect;

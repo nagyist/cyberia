@@ -16,6 +16,6 @@ abstract class Runner {
         this.master = master;
     }
     
-    respond(controls : Controls) {;}
-    abstract update(): void;
+    respond(controls : Controls) : void {;}
+    abstract update() : void;
 }

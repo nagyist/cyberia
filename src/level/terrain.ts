@@ -10,7 +10,7 @@ class Terrain extends Runner {
             const rect = new PIXI.Rectangle(16*i, 0, 16, 16);
             return new PIXI.Texture(text, rect);
         }
-        function getSprite(i, x, y) {
+        function renderSprite(i, x, y) : void {
             if (i == 0) return;
             const sprite = new PIXI.Sprite(getTile(i));
             sprite.x = x;
@@ -20,7 +20,7 @@ class Terrain extends Runner {
         }
 
         const bigtileset : any = worldfile.bigtiles[0];
-        function drawBigtile(i, x, y) {
+        function drawBigtile(i, x, y) : void {
             const bigtile = bigtileset[i];
             if (bigtile == -1) {
                 throw new Error("Can't load bigtile");
@@ -31,7 +31,7 @@ class Terrain extends Runner {
             for (let i = 0; i < bigtile.length; i++) {
                 const localx = i % 4;
                 const localy = (i / 4) >> 0;
-                getSprite(bigtile[i], cartx + localx*16, carty + localy*16)
+                renderSprite(bigtile[i], cartx + localx*16, carty + localy*16)
             }
         }
 
@@ -43,6 +43,6 @@ class Terrain extends Runner {
             drawBigtile(level.grid[i], x, y);
         }
     }
-    update() {;}
+    update() : void {;}
 }
 
