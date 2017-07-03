@@ -2,9 +2,11 @@ import tkinter as tk
 from PIL import ImageTk, Image
 #from enum import Enum
 import math
+
 from tilesets import tilesets
 from bigtiles import Bigtiles
 from level import Level
+from worldfile import Worldfile
 
 class Editor(tk.Frame):
     def __init__(self, master=None):
@@ -12,20 +14,35 @@ class Editor(tk.Frame):
         self.master = master
         self.pack()
 
-        self.level = 0
-        self.bigtiles = Bigtiles(9, tilesets.tiles[0])
-        self.currentlevel = Level(10,10)
-        self.tileset = 0
-        self.selected_tile = 0
-
+        self.openworldfile(Worldfile.new())
         self.buildGUI()
+    
+    def openworldfile(self, wf, redraw=False):
+        self.worldfile = wf
+        self.level = 0
+        self.selected_tile = 0
+        self.selected_bigtile = 0
+        self.tileset = 0
+        self.bigtiles = wf.bigtiles[0]
+        self.currentlevel = wf.levels[0]
+
+        if (redraw):
+            self.selectTile(0)
+            self.selectBigtile(0)
+            self.drawroom()
     
     def buildGUI(self):
         commandbar = tk.Frame(self)
         commandbar.grid(row=0, column=0, columnspan=2)
-        loadbutton = tk.Button(commandbar, text="Open")
+
+        def open():
+            self.openworldfile(Worldfile.deserialize(self.worldfile.serialize()), True)
+        loadbutton = tk.Button(commandbar, text="Open", command=open)
         loadbutton.grid(row=0, column=0)
-        savebutton = tk.Button(commandbar, text="Save")
+        
+        def save():
+            print(self.worldfile.serialize())
+        savebutton = tk.Button(commandbar, text="Save", command=save)
         savebutton.grid(row=0, column=1)
 
         tilegrid = tk.Frame(self, width=256)

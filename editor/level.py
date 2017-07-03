@@ -23,3 +23,16 @@ class Level():
             paste(i % self.width, i // self.width, self.grid[i])
     
         return img
+
+    def serialize(self):
+        return {
+            "grid": self.grid,
+            "width": self.width,
+            "height": self.height
+        }
+
+    @staticmethod
+    def deserialize(indict):
+        lvl = Level(indict["width"], indict["height"])
+        lvl.grid = indict["grid"]
+        return lvl

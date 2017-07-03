@@ -57,4 +57,21 @@ class Bigtiles():
 
         self._fullcache = img
         return img
-            
+    
+    def serialize(self):
+        out = []
+        for i in range(0, self.length):
+            if i in self._bigtiles:
+                out.append(self._bigtiles[i])
+            else:
+                out.append(-1)
+        return out
+    
+    @staticmethod
+    def deserialize(inarray, tiles):
+        bigtile = Bigtiles(len(inarray), tiles)
+        for i in range(0, len(inarray)):
+            if inarray[i] == -1:
+                continue
+            bigtile._bigtiles[i] = inarray[i]
+        return bigtile
