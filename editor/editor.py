@@ -1,7 +1,9 @@
 import tkinter as tk 
+from tkinter import filedialog
 from PIL import ImageTk, Image
 #from enum import Enum
 import math
+import json
 
 from tilesets import tilesets
 from bigtiles import Bigtiles
@@ -35,14 +37,43 @@ class Editor(tk.Frame):
         commandbar = tk.Frame(self)
         commandbar.grid(row=0, column=0, columnspan=2)
 
-        def open():
-            self.openworldfile(Worldfile.deserialize(self.worldfile.serialize()), True)
-        loadbutton = tk.Button(commandbar, text="Open", command=open)
+        def openfile():
+            filen = filedialog.askopenfilename(
+                defaultextension=".js",
+                initialfile="worldfile.js",
+                initialdir="../worldfile/",
+                filetypes=(("Javascript files", "*.js"),
+                           ("All files", "*")),
+                title="Open")
+            if filen != () and filen != "":
+                with open(filen, "r") as fileo:
+                    header = fileo.readline()
+                    if header != "var worldfile = \n":
+                        self.statusbar.config(text="Not a proper worldfile!")
+                        return
+                    data = fileo.read()
+                    wf = Worldfile.deserialize(json.loads(data))
+                    self.openworldfile(wf, True)
+        loadbutton = tk.Button(commandbar, text="Open", command=openfile)
         loadbutton.grid(row=0, column=0)
         
-        def save():
-            print(self.worldfile.serialize())
-        savebutton = tk.Button(commandbar, text="Save", command=save)
+        def savefile():
+            filen = filedialog.asksaveasfilename(
+                defaultextension=".js",
+                initialfile="worldfile.js",
+                initialdir="../worldfile/",
+                filetypes=(("Javascript files", "*.js"),
+                           ("All files", "*")),
+                title="Save")
+            if filen != () and filen != "":
+                with open(filen, "w") as fileo:
+                    fileo.seek(0)
+                    fileo.write("var worldfile = \n"+
+                                json.dumps(
+                                    self.worldfile.serialize(), indent=2, sort_keys=True
+                                )+"\n")
+                    fileo.truncate()
+        savebutton = tk.Button(commandbar, text="Save", command=savefile)
         savebutton.grid(row=0, column=1)
 
         tilegrid = tk.Frame(self, width=256)

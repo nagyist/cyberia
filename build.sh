@@ -15,5 +15,6 @@ python3 process.py
 echo "Moving other files"
 cp html/* build
 cp -r lib/*.js build/lib
+cp worldfile/worldfile.js build/
 
 echo "Complete"
