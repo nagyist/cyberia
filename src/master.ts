@@ -184,6 +184,7 @@ class Point {
 function loadResources() {
     PIXI.loader
         .add('player', 'images/player.gif')
+        .add('level1', 'images/level1.gif')
         .load(function() {master.initialize()})
 }
 

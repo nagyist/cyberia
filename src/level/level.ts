@@ -2,13 +2,14 @@
  * The level is responsible for all coordination of objects within the level.
  * No LevelObject should exist outside of the Level.
  * */
-class Level extends Runner {
+class Level extends Runner implements Master {
     private objects : LevelObject[] = []
     private stage : Stage = new Stage()
     private player : Player
 
     constructor(master : Master) {
         super(master);
+        this.addRunner(new Terrain(this, worldfile.levels[0]));
         this.player = new Player(this.stage);
         this.addObject(this.player);
     }
@@ -18,6 +19,7 @@ class Level extends Runner {
     }
 
     update() {
+        this.drawables.position = new PIXI.Point(200 - this.player.point.x, 0);
         this.player.update();
     }
 
@@ -31,6 +33,14 @@ class Level extends Runner {
         if (index !== -1)
             this.objects.splice(index, 1);
         this.drawables.removeChild(obj.sprite);
+    }
+
+    addRunner(runner : Runner) {
+        this.drawables.addChild(runner.drawables);
+    }
+
+    removeRunner(runner : Runner) {
+        this.drawables.removeChild(runner.drawables);
     }
 }
 

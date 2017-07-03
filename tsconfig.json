@@ -12,6 +12,7 @@
         "./src/level/level.ts",
         "./src/level/player.ts",
         "./src/level/stage.ts",
+        "./src/level/terrain.ts",
         "./src/master.ts",
         "./lib/typings/pixi.js.d.ts"
     ]
