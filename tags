@@ -4,9 +4,91 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-pixelgrid	process.py	/^pixelgrid = PixelGrid([(0,0,0)])$/;"	kind:variable	line:52
-pixelgrid2	process.py	/^pixelgrid2 = PixelGrid([0,0,0])$/;"	kind:variable	line:56
-pixelgrid3	process.py	/^pixelgrid3 = PixelGrid([0,0,0])$/;"	kind:variable	line:60
-process	process.py	/^def process(designation):$/;"	kind:function	line:15
+Bigtiles	editor/bigtiles.py	/^class Bigtiles():$/;"	kind:class	line:5
+Editor	editor/editor.py	/^class Editor(tk.Frame):$/;"	kind:class	line:13
+Level	editor/level.py	/^class Level():$/;"	kind:class	line:4
+PixelGrid	pixelgrid.py	/^class PixelGrid:$/;"	kind:class	line:11
+PixelSubset	pixelgrid.py	/^class PixelSubset(PixelGrid):$/;"	kind:class	line:243
+PixelTile	pixelgrid.py	/^class PixelTile:$/;"	kind:class	line:212
+Worldfile	editor/worldfile.py	/^class Worldfile():$/;"	kind:class	line:13
+__Tilesets	editor/tilesets.py	/^class __Tilesets():$/;"	kind:class	line:4
+__init__	editor/bigtiles.py	/^    def __init__(self, length, tiles):$/;"	kind:member	line:6
+__init__	editor/editor.py	/^    def __init__(self, master=None):$/;"	kind:member	line:14
+__init__	editor/level.py	/^    def __init__(self, width, height):$/;"	kind:member	line:5
+__init__	editor/tilesets.py	/^    def __init__(self):$/;"	kind:member	line:5
+__init__	editor/worldfile.py	/^    def __init__(self, bigtiles, levels):$/;"	kind:member	line:14
+__init__	pixelgrid.py	/^    def __init__(self, fill=0):$/;"	kind:member	line:213
+__init__	pixelgrid.py	/^    def __init__(self, palette):$/;"	kind:member	line:12
+__init__	pixelgrid.py	/^    def __init__(self, parent, selection):$/;"	kind:member	line:244
+_getmaxtuple	pixelgrid.py	/^    def _getmaxtuple(self):$/;"	kind:member	line:158
+bigtiles.py	editor/bigtiles.py	1;"	kind:file	line:1
+bounds	pixelgrid.py	/^    def bounds(self, x, y):$/;"	kind:member	line:62
+buildBigTileset	editor/editor.py	/^    def buildBigTileset(self, tiles=-1):$/;"	kind:member	line:206
+buildGUI	editor/editor.py	/^    def buildGUI(self):$/;"	kind:member	line:36
+buildTileset	editor/editor.py	/^    def buildTileset(self, tiles):$/;"	kind:member	line:200
+changepage	pixelgrid.py	/^    def changepage(self, pagenum):$/;"	kind:member	line:201
+clearTile	pixelgrid.py	/^    def clearTile(self, x, y): $/;"	kind:member	line:59
+clickBigtile	editor/editor.py	/^        def clickBigtile(e):$/;"	kind:function	line:136
+clickBigtilecanvas	editor/editor.py	/^        def clickBigtilecanvas(e):$/;"	kind:function	line:122
+clickLevel	editor/editor.py	/^        def clickLevel(e):$/;"	kind:function	line:183
+clickTilecanvas	editor/editor.py	/^        def clickTilecanvas(e):$/;"	kind:function	line:94
+dellastpage	pixelgrid.py	/^    def dellastpage(self):$/;"	kind:member	line:206
+deserialize	editor/bigtiles.py	/^    def deserialize(inarray, tiles):$/;"	kind:member	line:71
+deserialize	editor/level.py	/^    def deserialize(indict):$/;"	kind:member	line:35
+deserialize	editor/worldfile.py	/^    def deserialize(indict):$/;"	kind:member	line:27
+designation	process.py	/^designation = "build\/images\/"$/;"	kind:variable	line:15
+draw	editor/bigtiles.py	/^    def draw(self):$/;"	kind:member	line:49
+draw	editor/level.py	/^    def draw(self, bigtiles):$/;"	kind:member	line:16
+draw	pixelgrid.py	/^    def draw(self, photo, zoom, palette, x, y):$/;"	kind:member	line:231
+drawTile	editor/bigtiles.py	/^        def drawTile(x, y, j):$/;"	kind:function	line:36
+drawTkSubset	pixelgrid.py	/^    def drawTkSubset(self, photo, zoom, x, y, rx, ry, nx, ny, block=True, p=-1):$/;"	kind:member	line:119
+drawroom	editor/editor.py	/^    def drawroom(self):$/;"	kind:member	line:228
+drawtile	editor/bigtiles.py	/^    def drawtile(self, i):$/;"	kind:member	line:29
+drawtile2x	editor/bigtiles.py	/^    def drawtile2x(self, i):$/;"	kind:member	line:45
+dump	pixelgrid.py	/^    def dump(self):$/;"	kind:member	line:163
+dump	pixelgrid.py	/^    def dump(self):$/;"	kind:member	line:228
+editor.py	editor/editor.py	1;"	kind:file	line:1
+filen	process.py	/^filen = designation + "level1.gif"$/;"	kind:variable	line:28
+filen	process.py	/^filen = designation + "player.gif"$/;"	kind:variable	line:22
+flip	pixelgrid.py	/^    def flip(self, val1, val2):$/;"	kind:member	line:225
+flipColors	pixelgrid.py	/^    def flipColors(self, val1, val2, s):$/;"	kind:member	line:77
+get	editor/bigtiles.py	/^    def get(self, i, x, y):$/;"	kind:member	line:16
+get	editor/level.py	/^    def get(self, x, y):$/;"	kind:member	line:13
+get	pixelgrid.py	/^    def get(self, x, y):$/;"	kind:member	line:218
+get	pixelgrid.py	/^    def get(self, x, y, tileset=None):$/;"	kind:member	line:27
+getColor	pixelgrid.py	/^    def getColor(self, x, y, tileset=None):$/;"	kind:member	line:41
+getTkImage	pixelgrid.py	/^    def getTkImage(self, zoom, block=True):$/;"	kind:member	line:105
+getTkStrip	pixelgrid.py	/^    def getTkStrip(self, height, block=True):$/;"	kind:member	line:142
+getTkSubset	pixelgrid.py	/^    def getTkSubset(self, zoom, x, y, r):$/;"	kind:member	line:137
+ispageclear	pixelgrid.py	/^    def ispageclear(self, num):$/;"	kind:member	line:209
+level.py	editor/level.py	1;"	kind:file	line:1
+linearshift	pixelgrid.py	/^    def linearshift(self, a, b, c, d, e, f):$/;"	kind:member	line:85
+load	pixelgrid.py	/^    def load(self, info):$/;"	kind:member	line:181
+load	pixelgrid.py	/^    def load(self, pixels):$/;"	kind:member	line:239
+mergeSubset	pixelgrid.py	/^    def mergeSubset(self, subset, x, y):$/;"	kind:member	line:66
+new	editor/worldfile.py	/^    def new():$/;"	kind:member	line:33
+openfile	editor/editor.py	/^        def openfile():$/;"	kind:function	line:40
+openworldfile	editor/editor.py	/^    def openworldfile(self, wf, redraw=False):$/;"	kind:member	line:22
+pages	pixelgrid.py	/^    def pages(self):$/;"	kind:member	line:24
+paste	editor/level.py	/^        def paste(x, y, j):$/;"	kind:function	line:19
+pixelgrid	process.py	/^pixelgrid = PixelGrid([(0,0,0)])$/;"	kind:variable	line:19
+pixelgrid.py	pixelgrid.py	1;"	kind:file	line:1
 process.py	process.py	1;"	kind:file	line:1
+rclickBigtile	editor/editor.py	/^        def rclickBigtile(e):$/;"	kind:function	line:147
+rclickLevel	editor/editor.py	/^        def rclickLevel(e):$/;"	kind:function	line:193
 rgb	process.py	/^def rgb(hex_color):$/;"	kind:function	line:11
+root	editor/editor.py	/^root = tk.Tk()$/;"	kind:variable	line:237
+savefile	editor/editor.py	/^        def savefile():$/;"	kind:function	line:60
+selectBigtile	editor/editor.py	/^    def selectBigtile(self, i=-1):$/;"	kind:member	line:218
+selectTile	editor/editor.py	/^    def selectTile(self, i):$/;"	kind:member	line:213
+serialize	editor/bigtiles.py	/^    def serialize(self):$/;"	kind:member	line:61
+serialize	editor/level.py	/^    def serialize(self):$/;"	kind:member	line:27
+serialize	editor/worldfile.py	/^    def serialize(self):$/;"	kind:member	line:18
+set	editor/bigtiles.py	/^    def set(self, i, x, y, j):$/;"	kind:member	line:22
+set	editor/level.py	/^    def set(self, x, y, i):$/;"	kind:member	line:10
+set	pixelgrid.py	/^    def set(self, x, y, val):$/;"	kind:member	line:221
+set	pixelgrid.py	/^    def set(self, x, y, val):$/;"	kind:member	line:46
+shift	pixelgrid.py	/^    def shift(self, dx, dy):$/;"	kind:member	line:94
+tilesets	editor/tilesets.py	/^tilesets = __Tilesets()/;"	kind:variable	line:21
+tilesets.py	editor/tilesets.py	1;"	kind:file	line:1
+worldfile.py	editor/worldfile.py	1;"	kind:file	line:1

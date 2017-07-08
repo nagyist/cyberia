@@ -178,6 +178,7 @@ class Editor(tk.Frame):
         levelyscroll.config(command=self.levelcanvas.yview)
         self.levelcanvas.grid(row=0, column=0)
         self.levelcanvas.image = self.levelcanvas.create_image(0, 0, anchor=tk.NW)
+
         self.drawroom()
 
         def clickLevel(e):
@@ -229,7 +230,10 @@ class Editor(tk.Frame):
         self.levelcanvas.img = ImageTk.PhotoImage(self.currentlevel.draw(self.bigtiles))
         self.levelcanvas.itemconfig(
             self.levelcanvas.image,
-            image=self.levelcanvas.img
+            image=self.levelcanvas.img,
+        )
+        self.levelcanvas.config(
+            scrollregion=(0, 0, self.levelcanvas.img.width(), self.levelcanvas.img.height())
         )
         
         

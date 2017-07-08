@@ -20,7 +20,10 @@ class Level extends Runner implements Master {
     }
 
     update() : void {
-        this.drawables.position = new PIXI.Point(200 - this.player.point.x, 160 - this.player.point.y);
+        this.drawables.position = new PIXI.Point(
+            Math.min(200 - this.player.point.x,0),
+            160 - this.player.point.y
+            )
         this.player.update();
     }
 
