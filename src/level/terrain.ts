@@ -15,7 +15,6 @@ class Terrain extends Runner {
             const sprite = new PIXI.Sprite(getTile(i));
             sprite.x = x;
             sprite.y = y;
-            console.log(x, y)
             drawables.addChild(sprite);
         }
 
