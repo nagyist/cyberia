@@ -28,37 +28,38 @@ enum SolidityType {
 }
 
 const Solidity = {
-    isSolid(solid : SolidityType) : (x : Point) => boolean {
-        function slopeSolid(m : number, b : number) : (x : Point) => boolean {
-            return function(point: Point) : boolean {
-                return point.y > (m * point.x + b)
-            }
+    isSolid(solid : SolidityType, pt : Point) : boolean {
+        function slopeSolid(m : number, b : number, point: Point) : boolean {
+            return point.y > (m * point.x + b)
         }
-
         switch (solid) {
             case SolidityType.EMPTY:
-                return function(point : Point) {return false};
+                return false;
             case SolidityType.SOLID:
-                return function(point : Point) {return true};
+                return true;
             case SolidityType.SLOPE_LEFT_LOW:
-                return slopeSolid(0.5, 0);
+                return slopeSolid(0.5, 0, pt);
             case SolidityType.SLOPE_LEFT_HIGH:
-                return slopeSolid(0.5, 8);
+                return slopeSolid(0.5, 8, pt);
             case SolidityType.SLOPE_RIGHT_LOW:
-                return slopeSolid(-0.5, 8);
+                return slopeSolid(-0.5, 8, pt);
             case SolidityType.SLOPE_RIGHT_HIGH:
-                return slopeSolid(-0.5, 16);
+                return slopeSolid(-0.5, 16, pt);
             default:
                 throw "Not implemented / Unknown type"
         }
     },
-    isSlope(solid: SolidityType) : boolean {
+    getSlope(solid: SolidityType) : number {
         switch (solid) {
             case SolidityType.EMPTY:
             case SolidityType.SOLID:
-                return false;
-            default:
-                return true;
+                return 0;
+            case SolidityType.SLOPE_LEFT_LOW:
+            case SolidityType.SLOPE_LEFT_HIGH:
+                return -1;
+            case SolidityType.SLOPE_RIGHT_LOW:
+            case SolidityType.SLOPE_RIGHT_HIGH:
+                return 1;
         }
     }
 }

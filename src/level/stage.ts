@@ -20,6 +20,6 @@ class Stage {
         const offsetpt = pt.modulo(64).floor(16);
         // TODO: use a key or something
         const localtile = this.bigtiles[bigtile][offsetpt.x + 4*offsetpt.y] ? 1 : 0;
-        return Solidity.isSolid(localtile)(pt.modulo(16));
+        return Solidity.isSolid(localtile, pt.modulo(16));
     }
 }
