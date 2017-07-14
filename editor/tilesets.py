@@ -1,7 +1,7 @@
 from PIL import Image
 
 """Tilesets object contains all the PIL objects that make up the graphics."""
-class __Tilesets():
+class _Tilesets():
     def __init__(self):
         self.tilesets = [
             Image.open("../build/images/level1.gif")
@@ -18,4 +18,4 @@ class __Tilesets():
                 [x.resize((x.width*2, x.height*2), Image.NEAREST) for x in tiles]
             )
 
-tilesets = __Tilesets()
+tilesets = _Tilesets()

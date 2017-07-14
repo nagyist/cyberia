@@ -3,10 +3,10 @@ from PIL import Image
 """Bigtiles handles a set of 64x64 tiles"""
 
 class Bigtiles():
-    def __init__(self, length, tiles):
+    def __init__(self, length, tiles, key):
         self.length = length
         self.tiles = tiles
-        self.key = [0 for 0 in range(0, 256)]
+        self.key = key
 
         self._bigtiles = {}
         self._drawcache = {}
@@ -71,8 +71,9 @@ class Bigtiles():
         return out
     
     @staticmethod
-    def deserialize(inarray, tiles):
-        bigtile = Bigtiles(len(inarray), tiles)
+    def deserialize(indict, tiles):
+        inarray = indict["bigtiles"]
+        bigtile = Bigtiles(len(inarray), tiles, indict["key"])
         for i in range(0, len(inarray)):
             if inarray[i] == -1:
                 continue

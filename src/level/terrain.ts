@@ -18,7 +18,7 @@ class Terrain extends Runner {
             drawables.addChild(sprite);
         }
 
-        const bigtileset : any = worldfile.bigtiles[0];
+        const bigtileset : any = worldfile.bigtiles[0].bigtiles;
         function drawBigtile(i, x, y) : void {
             const bigtile = bigtileset[i];
             if (bigtile == -1) {

@@ -1,14 +1,23 @@
 import tkinter as tk 
 from tkinter import filedialog
 from PIL import ImageTk, Image
-#from enum import Enum
+from enum import Enum
 import math
 import json
 
 from tilesets import tilesets
+from images import images
 from bigtiles import Bigtiles
 from level import Level
 from worldfile import Worldfile
+
+class SolidityType(Enum):
+    EMPTY = 0
+    SOLID = 1
+    SLOPE_LEFT_LOW = 2
+    SLOPE_LEFT_HIGH = 3
+    SLOPE_RIGHT_LOW = 4
+    SLOPE_RIGHT_HIGH = 5
 
 class Editor(tk.Frame):
     def __init__(self, master=None):
@@ -101,10 +110,32 @@ class Editor(tk.Frame):
 
         tk.Label(tileframe, text="Current tile:").grid(row=0, column=0)
         self.selectedtile = tk.Label(tileframe)
-        self.selectTile(7)
+        
         self.selectedtile.grid(row=1, column=0)
 
-        tk.Label(tileframe, text="TODO: Solidity").grid(row=0, column=1)
+        def setSolid(solid):
+            # All this because python thought it was cool not to have to
+            # declare variables, it seems...
+            def inner():
+                self.bigtiles.key[self.selected_tile] = solid.value
+                self.soliditylabel.config(text="Solidity: " + solid.name)
+            return inner
+
+        self.soliditylabel = tk.Label(tileframe, text="Solidity")
+        self.soliditylabel.grid(row=0, column=1)
+        soliditypanel = tk.Frame(tileframe)
+        soliditypanel.grid(row=1, column=1)
+        self.currentsolid = tk.Label(soliditypanel)
+        self.currentsolid.pack(side=tk.LEFT)
+        self.solidityimg = {}
+        for i in SolidityType:
+            solid = i
+            self.solidityimg[i] = ImageTk.PhotoImage(images.solidity[i.value])
+            tk.Button(
+                soliditypanel, image=self.solidityimg[i],
+                command = setSolid(solid)
+            ).pack(side=tk.LEFT)
+        self.selectTile(7)
 
         scrollbigtiles = tk.Scrollbar(tilegrid, orient=tk.HORIZONTAL)
         self.bigtilecanvas = tk.Canvas(
@@ -215,6 +246,10 @@ class Editor(tk.Frame):
         self.selected_tile = i
         self.selectedtile.img = ImageTk.PhotoImage(tilesets.tiles2x[self.tileset][i])
         self.selectedtile.config(image=self.selectedtile.img)
+
+        solidity = SolidityType(self.bigtiles.key[self.selected_tile])
+        self.currentsolid.config(image=self.solidityimg[solidity])
+        self.soliditylabel.config(text="Solidity: "+solidity.name)
 
     def selectBigtile(self, i=-1):
         if i == -1:

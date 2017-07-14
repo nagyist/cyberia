@@ -8,7 +8,7 @@ class Stage {
 
     constructor(level : any) {
         this.level = level.grid;
-        this.bigtiles = worldfile.bigtiles[0];
+        this.bigtiles = worldfile.bigtiles[0].bigtiles;
         this.width = level.width;
     }
 

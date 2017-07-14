@@ -32,6 +32,8 @@ class Worldfile():
     @staticmethod
     def new():
         return Worldfile(
-            [Bigtiles(16, tilesets.tiles[0])],
+            [Bigtiles(
+                16, tilesets.tiles[0],
+                [0 for _ in range(0, 256)])],
             [Level(64,32)]
         )
