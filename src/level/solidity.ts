@@ -38,13 +38,13 @@ const Solidity = {
             case SolidityType.SOLID:
                 return true;
             case SolidityType.SLOPE_LEFT_LOW:
-                return slopeSolid(0.5, 0, pt);
-            case SolidityType.SLOPE_LEFT_HIGH:
                 return slopeSolid(0.5, 8, pt);
+            case SolidityType.SLOPE_LEFT_HIGH:
+                return slopeSolid(0.5, 0, pt);
             case SolidityType.SLOPE_RIGHT_LOW:
-                return slopeSolid(-0.5, 8, pt);
-            case SolidityType.SLOPE_RIGHT_HIGH:
                 return slopeSolid(-0.5, 16, pt);
+            case SolidityType.SLOPE_RIGHT_HIGH:
+                return slopeSolid(-0.5, 8, pt);
             default:
                 throw "Not implemented / Unknown type"
         }
