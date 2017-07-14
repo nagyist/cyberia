@@ -20,7 +20,9 @@ class Physics {
 
     constructor(public stage : Stage,
                 private weight: number,
-                private maxyvel : number) {;}
+                private maxyvel : number,
+                public width : number,
+                public height : number) {;}
 
     public step(point : Point) : Point {
         let newx = point.x + this.xvel;
@@ -31,7 +33,7 @@ class Physics {
              * I would like to do this without repeating the loop condition,
              * though...
              * */
-            if (this.stage.isSolid(new Point(newx, point.y))) {
+            if (this.isSolid(new Point(newx, point.y))) {
                 let newxvel = Math.abs(this.xvel);
                 const signx = Math.sign(this.xvel);
                 do {
@@ -42,7 +44,7 @@ class Physics {
                         newx = point.x;
                         break;
                     }
-                } while (this.stage.isSolid(new Point(newx, point.y)))
+                } while (this.isSolid(new Point(newx, point.y)))
                 this.xvel = 0;
             }
         }
@@ -53,23 +55,36 @@ class Physics {
         let newy = point.y + this.yvel;
         this.ground = false;
         if (this.yvel !== 0) {
-            if (this.stage.isSolid(new Point(point.x, newy))) {
+            if (this.isSolid(new Point(point.x, newy))) {
                 let newyvel = Math.abs(this.yvel);
                 const signy = Math.sign(this.yvel);
                 do {
                     if (newyvel > 0.1) {
                         newyvel -= 0.1;
-                        newy = point.y + signy*this.yvel;
+                        newy = point.y + signy*newyvel;
                     } else {
                         newy = point.y;
                         break;
                     }
-                } while (this.stage.isSolid(new Point(point.x, newy)))
+                } while (this.isSolid(new Point(point.x, newy)))
                 this.yvel = 0;
                 this.ground = true;
             }
         }
-
         return new Point(newx, newy);
+    }
+
+    private isSolid(pt : Point) : boolean {
+        const checks : Point[] = [pt];
+        if (this.yvel > 0 || this.xvel < 0) 
+            checks.push(new Point(pt.x - this.width/2, pt.y));
+        if (this.yvel > 0 || this.xvel > 0) 
+            checks.push(new Point(pt.x + this.width/2, pt.y));
+        if (this.yvel < 0 || this.xvel < 0)
+            checks.push(new Point(pt.x - this.width/2, pt.y - this.height));
+        if (this.yvel < 0 || this.xvel > 0)
+            checks.push(new Point(pt.x + this.width/2, pt.y - this.height));
+        return checks.map((e) => {return this.stage.isSolid(e)})
+                     .some((e) => {return e});
     }
 }

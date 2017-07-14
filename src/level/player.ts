@@ -25,7 +25,7 @@ class Player implements LevelObject {
         this.sprite.x = 200;
         this.sprite.y = 0;
 
-        this.physics = new Physics(stage, 1, 7);
+        this.physics = new Physics(stage, 1, 7, 12, 24);
     }
 
     respond(controls : Controls) : void {
