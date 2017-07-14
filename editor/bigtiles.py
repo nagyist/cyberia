@@ -6,6 +6,7 @@ class Bigtiles():
     def __init__(self, length, tiles):
         self.length = length
         self.tiles = tiles
+        self.key = [0 for 0 in range(0, 256)]
 
         self._bigtiles = {}
         self._drawcache = {}
@@ -59,12 +60,14 @@ class Bigtiles():
         return img
     
     def serialize(self):
-        out = []
+        out = {}
+        out["key"] = self.key
+        out["bigtiles"] = []
         for i in range(0, self.length):
             if i in self._bigtiles:
-                out.append(self._bigtiles[i])
+                out["bigtiles"].append(self._bigtiles[i])
             else:
-                out.append(-1)
+                out["bigtiles"].append(-1)
         return out
     
     @staticmethod

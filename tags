@@ -23,14 +23,14 @@ __init__	pixelgrid.py	/^    def __init__(self, parent, selection):$/;"	kind:memb
 _getmaxtuple	pixelgrid.py	/^    def _getmaxtuple(self):$/;"	kind:member	line:158
 bigtiles.py	editor/bigtiles.py	1;"	kind:file	line:1
 bounds	pixelgrid.py	/^    def bounds(self, x, y):$/;"	kind:member	line:62
-buildBigTileset	editor/editor.py	/^    def buildBigTileset(self, tiles=-1):$/;"	kind:member	line:206
+buildBigTileset	editor/editor.py	/^    def buildBigTileset(self, tiles=-1):$/;"	kind:member	line:207
 buildGUI	editor/editor.py	/^    def buildGUI(self):$/;"	kind:member	line:36
-buildTileset	editor/editor.py	/^    def buildTileset(self, tiles):$/;"	kind:member	line:200
+buildTileset	editor/editor.py	/^    def buildTileset(self, tiles):$/;"	kind:member	line:201
 changepage	pixelgrid.py	/^    def changepage(self, pagenum):$/;"	kind:member	line:201
 clearTile	pixelgrid.py	/^    def clearTile(self, x, y): $/;"	kind:member	line:59
 clickBigtile	editor/editor.py	/^        def clickBigtile(e):$/;"	kind:function	line:136
 clickBigtilecanvas	editor/editor.py	/^        def clickBigtilecanvas(e):$/;"	kind:function	line:122
-clickLevel	editor/editor.py	/^        def clickLevel(e):$/;"	kind:function	line:183
+clickLevel	editor/editor.py	/^        def clickLevel(e):$/;"	kind:function	line:184
 clickTilecanvas	editor/editor.py	/^        def clickTilecanvas(e):$/;"	kind:function	line:94
 dellastpage	pixelgrid.py	/^    def dellastpage(self):$/;"	kind:member	line:206
 deserialize	editor/bigtiles.py	/^    def deserialize(inarray, tiles):$/;"	kind:member	line:71
@@ -42,7 +42,7 @@ draw	editor/level.py	/^    def draw(self, bigtiles):$/;"	kind:member	line:16
 draw	pixelgrid.py	/^    def draw(self, photo, zoom, palette, x, y):$/;"	kind:member	line:231
 drawTile	editor/bigtiles.py	/^        def drawTile(x, y, j):$/;"	kind:function	line:36
 drawTkSubset	pixelgrid.py	/^    def drawTkSubset(self, photo, zoom, x, y, rx, ry, nx, ny, block=True, p=-1):$/;"	kind:member	line:119
-drawroom	editor/editor.py	/^    def drawroom(self):$/;"	kind:member	line:228
+drawroom	editor/editor.py	/^    def drawroom(self):$/;"	kind:member	line:229
 drawtile	editor/bigtiles.py	/^    def drawtile(self, i):$/;"	kind:member	line:29
 drawtile2x	editor/bigtiles.py	/^    def drawtile2x(self, i):$/;"	kind:member	line:45
 dump	pixelgrid.py	/^    def dump(self):$/;"	kind:member	line:163
@@ -75,12 +75,12 @@ pixelgrid	process.py	/^pixelgrid = PixelGrid([(0,0,0)])$/;"	kind:variable	line:1
 pixelgrid.py	pixelgrid.py	1;"	kind:file	line:1
 process.py	process.py	1;"	kind:file	line:1
 rclickBigtile	editor/editor.py	/^        def rclickBigtile(e):$/;"	kind:function	line:147
-rclickLevel	editor/editor.py	/^        def rclickLevel(e):$/;"	kind:function	line:193
+rclickLevel	editor/editor.py	/^        def rclickLevel(e):$/;"	kind:function	line:194
 rgb	process.py	/^def rgb(hex_color):$/;"	kind:function	line:11
-root	editor/editor.py	/^root = tk.Tk()$/;"	kind:variable	line:237
+root	editor/editor.py	/^root = tk.Tk()$/;"	kind:variable	line:241
 savefile	editor/editor.py	/^        def savefile():$/;"	kind:function	line:60
-selectBigtile	editor/editor.py	/^    def selectBigtile(self, i=-1):$/;"	kind:member	line:218
-selectTile	editor/editor.py	/^    def selectTile(self, i):$/;"	kind:member	line:213
+selectBigtile	editor/editor.py	/^    def selectBigtile(self, i=-1):$/;"	kind:member	line:219
+selectTile	editor/editor.py	/^    def selectTile(self, i):$/;"	kind:member	line:214
 serialize	editor/bigtiles.py	/^    def serialize(self):$/;"	kind:member	line:61
 serialize	editor/level.py	/^    def serialize(self):$/;"	kind:member	line:27
 serialize	editor/worldfile.py	/^    def serialize(self):$/;"	kind:member	line:18
