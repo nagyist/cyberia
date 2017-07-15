@@ -18,6 +18,7 @@ class SolidityType(Enum):
     SLOPE_LEFT_HIGH = 3
     SLOPE_RIGHT_LOW = 4
     SLOPE_RIGHT_HIGH = 5
+    OPEN_TOP = 6
 
 class Editor(tk.Frame):
     def __init__(self, master=None):

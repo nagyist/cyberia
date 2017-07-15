@@ -26,16 +26,32 @@ class Physics {
 
     public step(point : Point) : Point {
         let newx = point.x + this.xvel;
+        let newy = point.y;
+
+        const slope = this.getSlope(new Point(newx, newy));
         if (this.xvel !== 0) {
+            if (slope !== 0) {
+                newy = newy + (slope * this.xvel * 0.5);
+            }
+
             /* This construct is a bit weird... essentially we're trying to
              * keep the scope of newxvel limited to the block, and we only
              * want to zero out the x-velocity if solidity is ever detected.
              * I would like to do this without repeating the loop condition,
              * though...
-             * */
-            if (this.isSolid(new Point(newx, point.y))) {
+             * */   
+            if (this.isSolid(new Point(newx, newy))) {
                 let newxvel = Math.abs(this.xvel);
                 const signx = Math.sign(this.xvel);
+                if (slope !== 0)
+                    while (this.isSolid(new Point(newx, newy))) {
+                        newy = newy + (0.1*Math.sign(slope)*signx)
+                        if (Math.abs(newy) - Math.abs(point.y) > 2 * Math.abs(this.xvel)) {
+                            newy = point.y
+                            break;
+                        }
+                    }
+
                 do {
                     if (newxvel > 0.1) {
                         newxvel -= 0.1;
@@ -44,7 +60,7 @@ class Physics {
                         newx = point.x;
                         break;
                     }
-                } while (this.isSolid(new Point(newx, point.y)))
+                } while (this.isSolid(new Point(newx, newy)))
                 this.xvel = 0;
             }
         }
@@ -52,7 +68,7 @@ class Physics {
         this.yvel = this.yvel + this.weight * Physics.g;
         if (this.yvel > this.maxyvel)
             this.yvel = this.maxyvel;
-        let newy = point.y + this.yvel;
+        newy += + this.yvel;
         this.ground = false;
         if (this.yvel !== 0) {
             if (this.isSolid(new Point(point.x, newy))) {
@@ -71,6 +87,10 @@ class Physics {
                 this.ground = true;
             }
         }
+        while (this.isSolid(new Point(newx, newy))) {
+            newy = newy - 0.1;
+        }
+        this.ground = this.ground || (slope !== 0);
         return new Point(newx, newy);
     }
 
@@ -86,5 +106,18 @@ class Physics {
             checks.push(new Point(pt.x + this.width/2, pt.y - this.height));
         return checks.map((e) => {return this.stage.isSolid(e)})
                      .some((e) => {return e});
+    }
+
+    private getSlope(pt : Point) : number {
+        const checks : Point[] = [pt,
+        new Point(pt.x - this.width/2, pt.y),
+        new Point(pt.x + this.width/2, pt.y),
+        new Point(pt.x - this.width/2, pt.y - this.height),
+        new Point(pt.x + this.width/2, pt.y - this.height)];
+        for (let e of checks) {
+            const check : number = this.stage.getSlope(e);
+            if (check !== 0) return check;
+        }
+        return 0;
     }
 }

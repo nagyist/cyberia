@@ -11,6 +11,7 @@ class Player implements LevelObject {
     private stage : Stage
     private physics : Physics
     private facingLeft : boolean = false;
+    private stationary : boolean = true;
     private frame : number = 0
     private timer : number = 0
     private speedTimer : number = 0
@@ -56,11 +57,16 @@ class Player implements LevelObject {
         this.timer++;
         if (this.timer > 40)
             this.timer = 0;
-        this.point = this.physics.step(this.point);
+        let newpt = this.physics.step(this.point);
+        this.stationary = this.point.equals(newpt);
+        this.point = newpt;
         if (this.physics.xvel !== 0)
             this.speedTimer++
-        else
-            this.speedTimer = 0;
+        else if (this.speedTimer !== 0) {
+            this.speedTimer -= 2;
+            if (this.speedTimer < 0)
+                this.speedTimer == 0
+        }
         const rnd = this.point.round();
         this.sprite.x = rnd.x;
         this.sprite.y = rnd.y+1;
@@ -76,7 +82,7 @@ class Player implements LevelObject {
         } else if (this.speedTimer > 100) {
             const boost = this.speedTimer < 300 ? 0 : 1;
             rect = new PIXI.Rectangle(16*5 + boost, 0, 16, 32);
-        } else if (this.physics.xvel !== 0) {
+        } else if (!this.stationary /*this.physics.xvel !== 0*/) {
             const frame = (this.timer < 10) ? 1 :
                           (this.timer < 20) ? 2 :
                           (this.timer < 30) ? 3 : 4;

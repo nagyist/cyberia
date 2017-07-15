@@ -16,6 +16,8 @@
  * XXXX                 XXXX
  * XXXX                 XXXX
  * XXXX                 XXXX
+ * 
+ * OPEN_TOP: Solid but you can jump through it (because we need a directional dependence)
  * */
 
 enum SolidityType {
@@ -25,6 +27,7 @@ enum SolidityType {
     SLOPE_LEFT_HIGH,
     SLOPE_RIGHT_LOW,
     SLOPE_RIGHT_HIGH,
+    OPEN_TOP
 }
 
 const Solidity = {
@@ -45,21 +48,25 @@ const Solidity = {
                 return slopeSolid(-0.5, 16, pt);
             case SolidityType.SLOPE_RIGHT_HIGH:
                 return slopeSolid(-0.5, 8, pt);
+            case SolidityType.OPEN_TOP:
+                return true;
             default:
                 throw "Not implemented / Unknown type"
         }
     },
+
     getSlope(solid: SolidityType) : number {
         switch (solid) {
             case SolidityType.EMPTY:
             case SolidityType.SOLID:
+            case SolidityType.OPEN_TOP:
                 return 0;
             case SolidityType.SLOPE_LEFT_LOW:
             case SolidityType.SLOPE_LEFT_HIGH:
-                return -1;
+                return 0.5;
             case SolidityType.SLOPE_RIGHT_LOW:
             case SolidityType.SLOPE_RIGHT_HIGH:
-                return 1;
+                return -0.5;
         }
     }
 }

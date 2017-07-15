@@ -174,6 +174,10 @@ class Point {
         Object.freeze(this);
     }
 
+    equals(p : Point) : boolean {
+        return (this.x == p.x) && (this.y == p.y)
+    }
+
     round() : Point {
         return new Point(
             this.x >> 0,
