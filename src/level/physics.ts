@@ -51,7 +51,6 @@ class Physics {
                             break;
                         }
                     }
-
                 do {
                     if (newxvel > 0.1) {
                         newxvel -= 0.1;

@@ -6,7 +6,7 @@
  * */
 class Player implements LevelObject {
     active = true
-    point : Point = new Point(200, 0);
+    point : Point = new Point(200, 400); // THIS IS A DEBUG VALUE
     public sprite : PIXI.Sprite
     private stage : Stage
     private physics : Physics

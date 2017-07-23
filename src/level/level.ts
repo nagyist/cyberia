@@ -6,6 +6,8 @@ class Level extends Runner implements Master {
     private objects : LevelObject[] = []
     private stage : Stage
     private player : Player
+    private camera : Point
+    //private delta : Point = new Point(0,0);
 
     constructor(master : Master) {
         super(master);
@@ -13,6 +15,7 @@ class Level extends Runner implements Master {
         this.stage = new Stage(worldfile.levels[0]);
         this.player = new Player(this.stage);
         this.addObject(this.player);
+        this.camera = this.player.point;
     }
 
     respond(controls : Controls) : void {
@@ -20,9 +23,25 @@ class Level extends Runner implements Master {
     }
 
     update() : void {
+        const delta = this.camera.subtract(this.player.point);
+        /*if (delta.x !== 0) {
+            const minx = 3;
+            if (Math.abs(delta.x) < minx)
+                this.camera = new Point(this.player.point.x, this.camera.y);
+            this.camera = this.camera.subtract(new Point(Math.sign(delta.x)*minx, 0))
+        }*/
+        console.log(this.camera);
+        this.camera = new Point(this.player.point.x, this.camera.y);
+        if (delta.y !== 0) {
+            const miny = 0.5;
+            if (Math.abs(delta.y) < miny)
+                this.camera = new Point(this.camera.x, this.player.point.y);
+            this.camera = this.camera.subtract(new Point(0, Math.sign(delta.y)*miny))
+        }
+        const truecamera = this.camera.round();
         this.drawables.position = new PIXI.Point(
-            Math.min(200 - this.player.point.x,0),
-            160 - this.player.point.y
+            Math.min(200 - truecamera.x,0),
+            160 - truecamera.y
             )
         this.player.update();
     }
