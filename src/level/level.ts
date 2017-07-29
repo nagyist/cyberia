@@ -30,7 +30,6 @@ class Level extends Runner implements Master {
                 this.camera = new Point(this.player.point.x, this.camera.y);
             this.camera = this.camera.subtract(new Point(Math.sign(delta.x)*minx, 0))
         }*/
-        console.log(this.camera);
         this.camera = new Point(this.player.point.x, this.camera.y);
         if (delta.y !== 0) {
             const miny = 0.5;
